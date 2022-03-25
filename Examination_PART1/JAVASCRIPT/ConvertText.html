@@ -1,0 +1,36 @@
+<!DOCType HTML>
+<html>
+<head>
+<title>Testing JavaScript</title>
+</head>
+<body>
+<script type="text/javascript">
+
+  var string =  "TheQuickBrownFoxJumpsOverTheLazyDog";
+  //get the first letter of the string
+	var first = string.charAt(0);
+  //remove the first letter of the string
+	var rem = string.slice(1);
+  //make first letter lowercase and add the remaining letter of string
+	var caps = first.toLowerCase() + rem;
+  // add space between a lower and uppercase letter
+  s = caps.replace(/([a-z])([A-Z])/g, '$1 $2');
+  var text1="";
+  var text2="";
+ for (let i = 0; i < s.length; i++) {
+ 		if(s[i]!==" "){
+    //get all letter until space
+    	text1 += s[i] ;
+    //delete the letter until space
+      text2 = s.slice(i+1);
+    }else{
+    	break;
+    }
+}
+//make text1 uppercase then combine to text2
+var text = text1.toUpperCase() + text2;
+console.log(text);
+console.log(text);
+</script>
+</body>
+</html>

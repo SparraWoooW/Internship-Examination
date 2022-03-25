@@ -1,0 +1,72 @@
+<!DOCType HTML>
+<html>
+<head>
+<title>Testing JavaScript</title>
+</head>
+<body>
+<section class="contact-form">
+  <h1>Contact Form</h1>
+  <p>Create a function that will parse and display the JSON values on a Contact FORM.</p>
+  
+  <form>
+    
+    <div class="input-group">
+      <label for="lname">Last Name</label>
+      <input id="lname" name="lastName" type="text"/>
+
+      <label for="fname">First Name</label>
+      <input id="fname" name="firstName" type="text"/>
+    </div>
+    
+     <div class="input-group">
+      <input id="gender-male" name="gender" type="radio" value="Male"/>
+      <label class="inline" for="gender-male">Male</label>
+      
+      <input id="gender-female" name="gender" type="radio" value="Female"/>
+      <label class="inline" for="gender-female">Female.</label>
+    </div>
+    
+    <div class="input-group">
+      <label for="bday">Birthday</label>
+      <input id="bday" name="birthday" type="date"/>
+    </div>
+    
+    <div class="input-group">
+      <p class="group-label">Choose known language</p>
+      <input id="languge-english" name="language" type="checkbox" value="English"/>
+      <label class="inline" for="languge-english">English</label>
+      <input id="languge-japanese" name="language" type="checkbox" value="Japanese"/>
+      <label class="inline" for="languge-japanese">Japanese</label>
+      <input id="languge-chinese" name="language" type="checkbox" value="Chinese"/>
+      <label class="inline" for="languge-chinese">Chinese</label>
+      
+    </div>
+    <button type="submit">Send It!</button>
+  </form>
+</section>
+
+<div class="results">
+  <h2>Form Data</h2>
+  <pre></pre>
+</div>
+<script type="text/javascript">
+function handleFormSubmit(event) {
+  event.preventDefault();
+  
+  const data = new FormData(event.target);
+  
+  const formJSON = Object.fromEntries(data.entries());
+
+  // for multi-selects, we need special handling
+  formJSON.language = data.getAll('language');
+  
+  const results = document.querySelector('.results pre');
+  results.innerText = JSON.stringify(formJSON, null, 2);
+}
+
+const form = document.querySelector('.contact-form');
+form.addEventListener('submit', handleFormSubmit);
+
+</script>
+</body>
+</html>
